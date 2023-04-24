@@ -1,0 +1,28 @@
+tasks:
+
+  unit-test:
+
+    runner: razorci/python:3.9
+
+    steps:
+
+    - checkout
+
+    - commands:
+
+      - |
+
+      - python -c 'import site; print(site.getsitepackages())'
+      - pip install -r requirements.txt
+    - commands:
+      - python test.py
+
+    - docker/build:
+
+         image: razoropscode.jfrog.io/docker/teamprojectt
+
+         push: true 
+
+         tags: ["latest-v1"]
+
+
